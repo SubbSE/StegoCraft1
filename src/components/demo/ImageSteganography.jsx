@@ -130,13 +130,13 @@ const ImageSteganography = () => {
       
       {/* Mode Toggle */}
       <div className="flex justify-center mb-8">
-        <div className="bg-gray-100 p-1 rounded-lg">
+        <div className="bg-slate-800/50 backdrop-blur-xl p-1 rounded-lg border border-slate-600/50">
           <button
             onClick={() => setMode('hide')}
             className={`px-6 py-2 rounded-md font-medium transition-all ${
               mode === 'hide'
                 ? 'bg-blue-600 text-white shadow-lg'
-                : 'text-gray-600 hover:text-gray-800'
+                : 'text-gray-300 hover:text-white hover:bg-slate-700/50'
             }`}
           >
             Hide Message
@@ -146,7 +146,7 @@ const ImageSteganography = () => {
             className={`px-6 py-2 rounded-md font-medium transition-all ${
               mode === 'reveal'
                 ? 'bg-blue-600 text-white shadow-lg'
-                : 'text-gray-600 hover:text-gray-800'
+                : 'text-gray-300 hover:text-white hover:bg-slate-700/50'
             }`}
           >
             Reveal Message
@@ -158,25 +158,25 @@ const ImageSteganography = () => {
         {/* Input Section */}
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Select Image
             </label>
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 transition-colors"
+              className="border-2 border-dashed border-slate-600/50 rounded-lg p-8 text-center cursor-pointer hover:border-cyan-400/50 transition-all bg-slate-800/30 backdrop-blur-xl"
             >
               {previewUrl ? (
                 <img
                   src={previewUrl}
                   alt="Selected"
-                  className="max-w-full max-h-48 mx-auto rounded-lg"
+                  className="max-w-full max-h-48 mx-auto rounded-lg shadow-lg"
                 />
               ) : (
                 <div>
                   <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  <p className="mt-2 text-sm text-gray-600">Click to select an image</p>
+                  <p className="mt-2 text-sm text-gray-300">Click to select an image</p>
                 </div>
               )}
             </div>
@@ -191,16 +191,16 @@ const ImageSteganography = () => {
 
           {mode === 'hide' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-white mb-2">
                 Secret Message
               </label>
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Enter your secret message..."
-                className="w-full h-32 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full h-32 px-3 py-2 bg-slate-800/50 backdrop-blur-xl border border-slate-600/50 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-white placeholder-gray-400"
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-400 mt-1">
                 Max ~{selectedFile ? Math.floor((1000 * 1000) / 8) : 0} characters
               </p>
             </div>
@@ -209,7 +209,7 @@ const ImageSteganography = () => {
           <button
             onClick={mode === 'hide' ? hideMessage : revealMessage}
             disabled={!selectedFile || (mode === 'hide' && !message) || processing}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             {processing ? (
               <>
@@ -226,8 +226,31 @@ const ImageSteganography = () => {
 
         {/* Result Section */}
         <div className="space-y-6">
+          {/* Info Panel - Moved to Top */}
+          <div className="bg-slate-800/90 backdrop-blur-xl border border-slate-600/50 rounded-xl p-6 text-white shadow-xl">
+            <h3 className="text-lg font-semibold text-cyan-400 mb-4">How it works:</h3>
+            <ul className="space-y-2">
+              <li className="flex items-start space-x-2">
+                <span className="text-cyan-400 mt-1">•</span>
+                <span className="text-gray-300">Uses LSB (Least Significant Bit) substitution</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-cyan-400 mt-1">•</span>
+                <span className="text-gray-300">Modifies the last bit of red channel pixels</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-cyan-400 mt-1">•</span>
+                <span className="text-gray-300">Changes are invisible to human eye</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <span className="text-cyan-400 mt-1">•</span>
+                <span className="text-gray-300">Message is encoded in binary format</span>
+              </li>
+            </ul>
+          </div>
+
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               {mode === 'hide' ? 'Result Image' : 'Hidden Message'}
             </label>
             
@@ -236,12 +259,12 @@ const ImageSteganography = () => {
                 <img
                   src={resultUrl}
                   alt="Result"
-                  className="max-w-full rounded-lg border border-gray-200"
+                  className="max-w-full rounded-lg border border-slate-600/50 shadow-lg"
                 />
                 <a
                   href={resultUrl}
                   download="steganography-result.png"
-                  className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                  className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                 >
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
@@ -252,22 +275,34 @@ const ImageSteganography = () => {
             )}
 
             {mode === 'reveal' && revealedMessage && (
-              <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                <p className="text-sm font-medium text-gray-700 mb-2">Revealed Message:</p>
-                <p className="text-gray-900 whitespace-pre-wrap">{revealedMessage}</p>
+              <div className="p-4 bg-slate-800/50 backdrop-blur-xl rounded-lg border border-slate-600/50 shadow-lg">
+                <p className="text-sm font-medium text-cyan-400 mb-2">Revealed Message:</p>
+                <p className="text-gray-200 whitespace-pre-wrap font-mono">{revealedMessage}</p>
               </div>
             )}
-          </div>
 
-          {/* Info Panel */}
-          <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-            <h4 className="text-sm font-semibold text-blue-800 mb-2">How it works:</h4>
-            <ul className="text-xs text-blue-700 space-y-1">
-              <li>• Uses LSB (Least Significant Bit) substitution</li>
-              <li>• Modifies the last bit of red channel pixels</li>
-              <li>• Changes are invisible to human eye</li>
-              <li>• Message is encoded in binary format</li>
-            </ul>
+            {/* Placeholder when no result */}
+            {!resultUrl && !revealedMessage && (
+              <div className="border-2 border-dashed border-slate-600/50 rounded-lg p-8 text-center bg-slate-800/30 backdrop-blur-xl">
+                <div className="text-gray-400">
+                  {mode === 'hide' ? (
+                    <div>
+                      <svg className="mx-auto h-12 w-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                      </svg>
+                      <p className="text-sm">Result image will appear here</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <svg className="mx-auto h-12 w-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <p className="text-sm">Hidden message will appear here</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

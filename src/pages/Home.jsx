@@ -30,24 +30,6 @@ const HomePage = () => {
         <div className="relative z-10">
           {/* Features section */}
           <Features />
-          
-          {/* Seamless connecting element */}
-          <div className="py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
-              <div className="mt-8 mb-8">
-                <div className="inline-flex items-center space-x-4 text-purple-300">
-                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-purple-500/50"></div>
-                  <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
-                  </svg>
-                  <div className="w-12 h-px bg-gradient-to-l from-transparent to-purple-500/50"></div>
-                </div>
-              </div>
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
-            </div>
-          </div>
-          
           {/* HowItWorks section */}
           <HowItWorks />
         </div>
