@@ -12,7 +12,7 @@
 
 *Hide messages in plain sight with cutting-edge steganography techniques*
 
-[🚀 Live Demo](https://animated-frangollo-651e01.netlify.app/) • [📖 Documentation](https://github.com/SubbSE/StegoCraft1/wiki) • [🐛 Report Bug](https://github.com/SubbSE/StegoCraft1/issues) • [💡 Request Feature](https://github.com/SubbSE/StegoCraft1/issues)
+[🚀 Live Demo](https://stegocraft.netlify.app/) • [📖 Documentation](https://github.com/SubbSE/StegoCraft1/wiki) • [🐛 Report Bug](https://github.com/SubbSE/StegoCraft1/issues) • [💡 Request Feature](https://github.com/SubbSE/StegoCraft1/issues)
 
 </div>
 
