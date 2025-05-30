@@ -12,7 +12,7 @@
 
 *Hide messages in plain sight with cutting-edge steganography techniques*
 
-[🚀 Live Demo](https://stegocraft-demo.netlify.app) • [📖 Documentation](https://github.com/sayanbasak/stegocraft/wiki) • [🐛 Report Bug](https://github.com/sayanbasak/stegocraft/issues) • [💡 Request Feature](https://github.com/sayanbasak/stegocraft/issues)
+[🚀 Live Demo](https://animated-frangollo-651e01.netlify.app/) • [📖 Documentation](https://github.com/SubbSE/StegoCraft1/wiki) • [🐛 Report Bug](https://github.com/SubbSE/StegoCraft1/issues) • [💡 Request Feature](https://github.com/SubbSE/StegoCraft1/issues)
 
 </div>
 
@@ -42,7 +42,7 @@ StegoCraft is a modern web-based steganography platform that makes hiding and re
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/sayanbasak/stegocraft.git
+   git clone https://github.com/SubbSE/StegoCraft1.git
    cd stegocraft
    ```
 
@@ -78,25 +78,6 @@ StegoCraft is a modern web-based steganography platform that makes hiding and re
 - **Canvas API** - Image manipulation
 - **Web Audio API** - Audio processing
 - **File API** - File handling
-
-## 📸 Screenshots
-
-<details>
-<summary>🖼️ Click to view screenshots</summary>
-
-### Homepage
-![Homepage](./screenshots/homepage.png)
-
-### Image Steganography Demo
-![Image Demo](./screenshots/image-demo.png)
-
-### Text Steganography Demo
-![Text Demo](./screenshots/text-demo.png)
-
-### About Page
-![About Page](./screenshots/about-page.png)
-
-</details>
 
 ## 🎮 How to Use
 
@@ -186,7 +167,7 @@ stegocraft/
 
 ## 🤝 Contributing
 
-We love contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+We love contributions! Please see our Contributing Guidelines for details.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)

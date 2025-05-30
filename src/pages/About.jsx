@@ -42,7 +42,7 @@ const About = () => {
   {
     name: "Sriparna Biswas",
     role: "UI/UX Designer ",
-    avatar: "g👩‍💻",
+    avatar: "👩‍💻",
     bio: "Transforming ideas into beautiful clean and intuitive interfaces",
     skills: ["UX Design", "Prototyping", "Figma"]
   },
