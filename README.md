@@ -4,14 +4,15 @@
 
 ![StegoCraft Banner](https://img.shields.io/badge/StegoCraft-Steganography%20Platform-blueviolet?style=for-the-badge&logo=react)
 
-[![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-4.0+-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0+-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![React](https://img.shields.io/badge/React-18.2+-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.0+-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1+-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES2024-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Node.js](https://img.shields.io/badge/Node.js-20.0+-339933?style=flat&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 
 *Hide messages in plain sight with cutting-edge steganography techniques*
 
-[🚀 Live Demo](https://stegocraft-demo.netlify.app) • [📖 Documentation](https://github.com/subirghosh/stegocraft/wiki) • [🐛 Report Bug](https://github.com/subirghosh/stegocraft/issues) • [💡 Request Feature](https://github.com/subirghosh/stegocraft/issues)
+[🚀 Live Demo](https://stegocraft-demo.netlify.app) • [📖 Documentation](https://github.com/sayanbasak/stegocraft/wiki) • [🐛 Report Bug](https://github.com/sayanbasak/stegocraft/issues) • [💡 Request Feature](https://github.com/sayanbasak/stegocraft/issues)
 
 </div>
 
@@ -34,14 +35,14 @@ StegoCraft is a modern web-based steganography platform that makes hiding and re
 
 ### Prerequisites
 
-- Node.js (v16.0 or higher)
-- npm or yarn
+- Node.js (v20.0 or higher)
+- npm (v10.0+) or yarn (v4.0+)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/subirghosh/stegocraft.git
+   git clone https://github.com/sayanbasak/stegocraft.git
    cd stegocraft
    ```
 
@@ -64,11 +65,19 @@ StegoCraft is a modern web-based steganography platform that makes hiding and re
 
 <div align="center">
 
-| Frontend | Styling | Build Tool | Deployment |
-|----------|---------|------------|------------|
-| ![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat&logo=tailwindcss&logoColor=white) | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white) | ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white) |
+| Frontend | Styling | Build Tool | Runtime | Deployment |
+|----------|---------|------------|---------|------------|
+| ![React](https://img.shields.io/badge/React%2018.2-61DAFB?style=flat&logo=react&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind%204.1-06B6D4?style=flat&logo=tailwindcss&logoColor=white) | ![Vite](https://img.shields.io/badge/Vite%205.0-646CFF?style=flat&logo=vite&logoColor=white) | ![Node.js](https://img.shields.io/badge/Node.js%2020-339933?style=flat&logo=nodedotjs&logoColor=white) | ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white) |
 
 </div>
+
+### Additional Technologies
+- **React Router** v6.8+ - Client-side routing
+- **Framer Motion** v10.0+ - Smooth animations
+- **React Icons** v4.8+ - Beautiful iconography
+- **Canvas API** - Image manipulation
+- **Web Audio API** - Audio processing
+- **File API** - File handling
 
 ## 📸 Screenshots
 
@@ -139,9 +148,10 @@ StegoCraft is a modern web-based steganography platform that makes hiding and re
 
 <div align="center">
 
-| **Subir Ghosh**<br/>*Lead Developer & UI/UX*<br/>👨‍💻 | **Sayan Basak**<br/>*Cryptography Specialist*<br/>👨‍🔬 | **Sriparna Biswas**<br/>*Audio Processing Expert*<br/>👩‍🎵 | **Ankan Jash**<br/>*Backend Architect*<br/>👨‍💻 |
+| **Sayan Basak**<br/>*Lead Developer*<br/>👨‍💻 | **Subir Ghosh**<br/>*Cryptography Specialist*<br/>👨‍🔬 | **Sriparna Biswas**<br/>*UI/UX Designer*<br/>👩‍💻 | **Ankan Jash**<br/>*Backend Architect*<br/>👨‍💻 |
 |:---:|:---:|:---:|:---:|
-| React • UI Design • Image Processing | Cryptography • Python • Research | DSP • JavaScript • Audio APIs | Node.js • Architecture • Security |
+| Tech wizard who brought the beautiful website to life | Algorithm mastermind behind our steganography techniques | Transforming ideas into beautiful clean and intuitive interfaces | System designer ensuring robust and scalable performance |
+| React • Tailwind • Image Processing | Cryptography • Python • Research | UX Design • Prototyping • Figma | Node.js • Architecture • Security |
 
 </div>
 
@@ -169,6 +179,8 @@ stegocraft/
 │   ├── App.jsx
 │   └── main.jsx
 ├── package.json
+├── vite.config.js
+├── tailwind.config.js
 └── README.md
 ```
 
@@ -237,6 +249,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Made with ❤️ by the StegoCraft Team
 
-![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=subirghosh.stegocraft)
+![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=sayanbasak.stegocraft)
 
 </div>
