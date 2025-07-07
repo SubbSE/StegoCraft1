@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from './config/firebase'; // Import Firebase auth
+import { auth } from './config/firebase';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -14,14 +14,9 @@ import './App.css';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
-
   return null;
 };
 
@@ -31,52 +26,69 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Listen for Firebase authentication state changes
+    console.log('🔍 Setting up Firebase auth listener...');
+    
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('🔍 Auth state changed. User:', user ? user.email : 'none');
+      
       if (user) {
-        // User is signed in
         setIsAuthenticated(true);
         setUser(user);
-        console.log('User signed in:', user.email);
+        localStorage.setItem('stegoCraftCurrentUser', JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          username: user.displayName || user.email.split('@')[0]
+        }));
       } else {
-        // User is signed out
         setIsAuthenticated(false);
         setUser(null);
         localStorage.removeItem('stegoCraftCurrentUser');
-        console.log('User signed out');
       }
+      
       setIsLoading(false);
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
-  const handleLogout = async () => {
+  // Define handleLogout function - THIS IS THE KEY FIX
+  const handleLogout = React.useCallback(async () => {
+    console.log('🚨 App.jsx handleLogout called!');
+    console.log('🚨 Current Firebase user:', auth.currentUser);
+    
     const confirmLogout = window.confirm('Are you sure you want to logout?');
     
     if (confirmLogout) {
       try {
-        // Sign out from Firebase
-        await signOut(auth);
+        console.log('🚨 Attempting Firebase signOut...');
         
-        // Clear local storage
-        localStorage.removeItem('stegoCraftCurrentUser');
+        if (auth.currentUser) {
+          await signOut(auth);
+          console.log('✅ Firebase signOut successful');
+        } else {
+          console.log('⚠️ No Firebase user, clearing local state');
+        }
         
-        // State will be updated automatically by onAuthStateChanged
+        // Clear everything
         setIsAuthenticated(false);
         setUser(null);
+        localStorage.clear();
         
-        setTimeout(() => {
-          alert('You have been logged out successfully!');
-        }, 100);
+        console.log('✅ Logout complete');
+        alert('Logged out successfully!');
         
       } catch (error) {
-        console.error('Error signing out:', error);
-        alert('Error logging out. Please try again.');
+        console.error('🚨 Logout error:', error);
+        
+        // Force logout anyway
+        setIsAuthenticated(false);
+        setUser(null);
+        localStorage.clear();
+        
+        alert('Logged out (with error): ' + error.message);
       }
     }
-  };
+  }, []); // Empty dependency array
 
   if (isLoading) {
     return (
@@ -84,7 +96,6 @@ function App() {
         <div className="text-center">
           <div className="animate-spin w-12 h-12 border-4 border-cyan-400 border-t-transparent rounded-full mx-auto mb-4"></div>
           <div className="text-cyan-400 font-semibold">Loading StegoCraft...</div>
-          <div className="text-gray-400 text-sm mt-2">Checking authentication...</div>
         </div>
       </div>
     );
@@ -102,6 +113,7 @@ function App() {
     <Router>
       <div className="App min-h-screen w-full">
         <ScrollToTop />
+        {/* FIXED: Make sure onLogout prop is properly passed */}
         <Navbar onLogout={handleLogout} user={user} />
         <main className="w-full">
           <Routes>
