@@ -3,7 +3,8 @@ import { Figure } from '../components/ui/display';
 import { Segmented, Slider } from '../components/ui/controls';
 import { generateLandscape } from '../lib/synth';
 import { hideInImage, imageCapacity } from '../lib/imageStego';
-import { chiSquareCurve, chiSquareProbability, histogram } from '../lib/analysis';
+import { chiSquareCurve, chiSquareProbability, histogram, summarizeChiCurve } from '../lib/analysis';
+import { ChiCurve } from '../components/detect/charts';
 import { seededRandom } from '../lib/prng';
 
 const RANGE_START = 96;
@@ -32,29 +33,6 @@ function PairsChart({ hist }) {
   );
 }
 
-function CurveChart({ curve, embedded }) {
-  const w = 300;
-  const h = 120;
-  const pts = curve.map((c) => `${(c.fraction * w).toFixed(1)},${(h - 12 - c.p * (h - 24)).toFixed(1)}`).join(' ');
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img" aria-label="Probability of hidden data across the image">
-      {embedded > 0 && <rect x="0" y="0" width={embedded * w} height={h - 12} fill="var(--color-warn)" opacity="0.12" />}
-      <line x1="0" y1="12" x2={w} y2="12" stroke="var(--color-line)" strokeDasharray="4 4" />
-      <line x1="0" y1={h - 12} x2={w} y2={h - 12} stroke="var(--color-line-strong)" />
-      <polyline points={pts} fill="none" stroke="var(--color-danger)" strokeWidth="2.5" strokeLinejoin="round" />
-      <text x="4" y="10" fontSize="9" fill="var(--color-muted)">
-        100%
-      </text>
-      <text x="4" y={h - 15} fontSize="9" fill="var(--color-muted)">
-        0%
-      </text>
-      <text x={w} y={h - 1} fontSize="9" textAnchor="end" fill="var(--color-muted)">
-        whole image →
-      </text>
-    </svg>
-  );
-}
-
 export default function ChiSquareLab() {
   const cover = useMemo(() => generateLandscape(320, 200, 11), []);
   const [mode, setMode] = useState('ordered');
@@ -78,13 +56,7 @@ export default function ChiSquareLab() {
   const hist = useMemo(() => histogram(stego), [stego]);
   const curve = useMemo(() => chiSquareCurve(stego, 60), [stego]);
   const p = useMemo(() => chiSquareProbability(hist) ?? 0, [hist]);
-  // Like Westfeld & Pfitzmann, read the curve: a run of high probability from the start means LSB data there.
-  const peak = Math.max(...curve.filter((c) => c.fraction >= 0.05).map((c) => c.p));
-  let reach = 0;
-  for (const c of curve) {
-    if (c.p > 0.5) reach = c.fraction;
-    else if (c.fraction >= 0.05) break;
-  }
+  const { peak, reach } = useMemo(() => summarizeChiCurve(curve), [curve]);
   const verdict =
     peak > 0.95
       ? reach >= 0.99
@@ -120,7 +92,7 @@ export default function ChiSquareLab() {
         </div>
         <div>
           <p className="mb-2 text-xs font-semibold text-ink">Probability of hidden data</p>
-          <CurveChart curve={curve} embedded={mode === 'ordered' ? size / 100 : mode === 'scattered' ? 1 : 0} />
+          <ChiCurve curve={curve} shade={mode === 'ordered' ? size / 100 : mode === 'scattered' ? 1 : 0} />
         </div>
       </div>
       <div className={`mt-4 flex flex-wrap items-baseline justify-between gap-2 rounded-xl px-4 py-3 ${peak > 0.95 ? 'bg-danger/10' : peak > 0.5 ? 'bg-warn/10' : 'bg-secret/10'}`} role="status">

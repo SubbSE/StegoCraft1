@@ -151,3 +151,17 @@ export function lsbBalance(image) {
   const n = d.length / 4;
   return ones.map((o) => o / n);
 }
+
+/**
+ * Reads a chi-square curve the way Westfeld & Pfitzmann do: `peak` is the highest probability
+ * (ignoring the first few percent), `reach` is how far from the start the probability stays high.
+ */
+export function summarizeChiCurve(curve) {
+  const peak = Math.max(0, ...curve.filter((c) => c.fraction >= 0.05).map((c) => c.p));
+  let reach = 0;
+  for (const c of curve) {
+    if (c.p > 0.5) reach = c.fraction;
+    else if (c.fraction >= 0.05) break;
+  }
+  return { peak, reach };
+}

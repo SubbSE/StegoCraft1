@@ -15,7 +15,7 @@ import {
   scanText,
   ZERO_WIDTH,
 } from './textStego';
-import { bitPlane, chiSquareCurve, chiSquareProbability, gammaP, histogram } from './analysis';
+import { bitPlane, chiSquareCurve, chiSquareProbability, gammaP, histogram, summarizeChiCurve } from './analysis';
 import { hideInImage, imageCapacity } from './imageStego';
 import { generateLandscape } from './synth';
 import { dct8, fft, idct8, JPEG_LUMA_TABLE, quantTable } from './dsp';
@@ -105,6 +105,11 @@ describe('steganalysis', () => {
     const curve = chiSquareCurve(image, 20);
     expect(curve[3].p).toBeGreaterThan(0.9);
     expect(curve[19].p).toBeLessThan(0.05);
+    const { peak, reach } = summarizeChiCurve(curve);
+    expect(peak).toBeGreaterThan(0.95);
+    expect(reach).toBeGreaterThanOrEqual(0.3);
+    expect(reach).toBeLessThanOrEqual(0.4);
+    expect(summarizeChiCurve(chiSquareCurve(clean, 20)).peak).toBeLessThan(0.5);
   });
 
   it('bit planes are black and white', () => {

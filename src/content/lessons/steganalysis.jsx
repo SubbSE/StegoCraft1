@@ -48,6 +48,11 @@ export default function Steganalysis() {
           With a <strong>scattered</strong> message, the pairs only partly flatten. This basic test misses small scattered
           messages — but turn the size up to the maximum, and it catches them too.
         </li>
+        <li>
+          The test assumes the hidden bits look <em>random</em>, as encrypted or compressed data does. Plain, unencrypted text
+          is slightly lopsided (for example, the first bit of every English character is 0), which can fool this simple
+          test — though not the stronger ones below.
+        </li>
       </ul>
 
       <h2>Stronger attacks</h2>
