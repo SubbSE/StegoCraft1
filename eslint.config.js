@@ -30,4 +30,9 @@ export default [
       ],
     },
   },
+  {
+    // Lesson and challenge modules export data (quizzes, metadata) next to their components.
+    files: ['src/content/**/*.{js,jsx}'],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
 ]

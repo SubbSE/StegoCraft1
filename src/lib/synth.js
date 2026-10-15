@@ -32,8 +32,9 @@ function ridge(rand, octaves = 5, base = 3) {
 /**
  * A sunset mountain landscape. Includes sensor-like grain and a final contrast stretch — like real
  * camera pipelines, which leave small gaps in the histogram (useful for the chi-square lesson).
+ * grain = 0 gives a perfectly smooth picture, whose low bit planes still show structure.
  */
-export function generateLandscape(width = 640, height = 400, seed = 42) {
+export function generateLandscape(width = 640, height = 400, seed = 42, { grain = 5 } = {}) {
   const rand = seededRandom(seed);
   const data = new Uint8ClampedArray(width * height * 4);
   const sun = { x: width * 0.7, y: height * 0.5, r: height * 0.075 };
@@ -76,8 +77,8 @@ export function generateLandscape(width = 640, height = 400, seed = 42) {
       });
       const o = (y * width + x) * 4;
       for (let k = 0; k < 3; k++) {
-        const grain = (rand() + rand() + rand() - 1.5) * 5;
-        const v = Math.round(clamp255(c[k] + grain));
+        const noise = grain ? (rand() + rand() + rand() - 1.5) * grain : 0;
+        const v = Math.round(clamp255(c[k] + noise));
         data[o + k] = clamp255(Math.round((v - 6) * 1.06));
       }
       data[o + 3] = 255;

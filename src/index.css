@@ -117,45 +117,48 @@
 }
 
 @layer components {
-  /* Long-form lesson typography */
+  /* Long-form lesson typography. Only direct children are styled, so embedded widgets keep their own look. */
   .prose-sc {
     @apply text-[1.0625rem] leading-[1.75] text-ink;
-  }
-  .prose-sc > * + * {
-    margin-top: 1.1em;
-  }
-  .prose-sc h2 {
-    @apply text-2xl sm:text-[1.75rem] font-semibold leading-tight;
-    margin-top: 2.4em;
-  }
-  .prose-sc h3 {
-    @apply text-xl font-semibold leading-snug;
-    margin-top: 1.8em;
-  }
-  .prose-sc h2 + *,
-  .prose-sc h3 + * {
-    margin-top: 0.6em;
-  }
-  .prose-sc a {
-    @apply text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent;
-  }
-  .prose-sc strong {
-    @apply font-semibold text-ink;
-  }
-  .prose-sc ul {
-    @apply list-disc pl-6 space-y-1.5 marker:text-subtle;
-  }
-  .prose-sc ol {
-    @apply list-decimal pl-6 space-y-1.5 marker:text-subtle;
-  }
-  .prose-sc blockquote {
-    @apply border-l-4 border-line-strong pl-4 italic text-muted;
-  }
-  .prose-sc :not(pre) > code {
-    @apply font-mono text-[0.88em] bg-surface-2 border border-line rounded px-1.5 py-0.5;
-  }
-  .prose-sc kbd {
-    @apply font-mono text-[0.85em] bg-surface border border-line-strong border-b-2 rounded px-1.5 py-0.5;
+
+    & > * + * {
+      margin-top: 1.1em;
+    }
+    & > h2 {
+      @apply text-2xl sm:text-[1.75rem] font-semibold leading-tight;
+      margin-top: 2.2em;
+    }
+    & > h3 {
+      @apply text-xl font-semibold leading-snug;
+      margin-top: 1.8em;
+    }
+    & > h2 + *,
+    & > h3 + * {
+      margin-top: 0.6em;
+    }
+    & > ul {
+      @apply list-disc pl-6 space-y-1.5 marker:text-subtle;
+    }
+    & > ol {
+      @apply list-decimal pl-6 space-y-1.5 marker:text-subtle;
+    }
+    & > blockquote {
+      @apply border-l-4 border-line-strong pl-4 italic text-muted;
+    }
+    & > :is(p, ul, ol, blockquote, h2, h3) {
+      & a {
+        @apply text-accent underline decoration-accent/40 underline-offset-[3px] hover:decoration-accent;
+      }
+      & strong {
+        @apply font-semibold text-ink;
+      }
+      & code {
+        @apply font-mono text-[0.88em] bg-surface-2 border border-line rounded px-1.5 py-0.5;
+      }
+      & kbd {
+        @apply font-mono text-[0.85em] bg-surface border border-line-strong border-b-2 rounded px-1.5 py-0.5;
+      }
+    }
   }
 
   .pixelated {
