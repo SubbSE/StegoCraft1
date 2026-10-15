@@ -124,7 +124,7 @@ function BaconArtifact({ text, code }) {
   return (
     <Card className="space-y-4">
       <h2 className="text-lg font-semibold">The sentence</h2>
-      <p className="rounded-xl border border-line bg-surface-2 px-5 py-6 text-center text-3xl leading-relaxed text-ink sm:text-4xl">
+      <p className="rounded-xl border border-line bg-surface-2 px-5 py-6 text-center text-4xl leading-snug text-ink sm:text-6xl">
         {marked.map(({ ch, serif }, i) => (
           <span key={i} className={serif ? 'font-serif' : 'font-sans'}>
             {ch}

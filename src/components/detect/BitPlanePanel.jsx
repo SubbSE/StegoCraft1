@@ -38,10 +38,18 @@ export default function BitPlanePanel({ image }) {
           ))}
         </div>
       </div>
-      <ImageCanvas image={plane} pixelated className="w-full rounded-lg border border-line" label={`Bit plane ${bit}`} />
+      <ImageCanvas
+        image={plane}
+        pixelated
+        className="w-full rounded-lg border border-line"
+        label={`Bit plane ${bit}, ${CHANNELS.find((c) => c.value === channel).label.toLowerCase()} ${channel === 'rgb' ? 'channels' : 'channel'}`}
+      />
       <p className="text-xs text-muted">
-        Bit 0 (LSB) of a camera photo usually looks like even static. Bands, blocks or a region that looks different from the
-        rest suggest something was written there.
+        {bit === 0
+          ? 'Bit 0, the least significant bit. In a camera photo it usually looks like even static. Bands, blocks or a region that looks different from the rest suggest something was written there.'
+          : bit === 7
+            ? 'Bit 7, the most significant bit. It carries the main shapes of the picture.'
+            : `Bit ${bit}. Higher bits carry more of the picture's shapes; lower bits look more and more like noise. Shapes or text that don't belong to the photo are a giveaway.`}
       </p>
     </div>
   );
