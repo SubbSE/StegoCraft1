@@ -7,14 +7,19 @@ import { Spinner } from '../ui/display';
 function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
-    if (hash) {
-      const el = document.getElementById(decodeURIComponent(hash.slice(1)));
-      if (el) {
-        el.scrollIntoView();
-        return;
-      }
-    }
     window.scrollTo(0, 0);
+    const id = hash ? decodeURIComponent(hash.slice(1)) : '';
+    if (!id) return undefined;
+    // Pages and lessons load lazily, so the target may not exist yet: keep looking for about two seconds.
+    let frame = 0;
+    let tries = 0;
+    const find = () => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView();
+      else if (tries++ < 120) frame = requestAnimationFrame(find);
+    };
+    find();
+    return () => cancelAnimationFrame(frame);
   }, [pathname, hash]);
   return null;
 }
