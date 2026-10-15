@@ -82,6 +82,7 @@ export function Dropzone({ accept, onFile, title = 'Drop a file here', hint, all
         accept={accept}
         className="sr-only"
         tabIndex={-1}
+        aria-hidden="true"
         onChange={(e) => {
           take(e.target.files?.[0]);
           e.target.value = '';

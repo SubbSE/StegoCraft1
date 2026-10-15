@@ -21,15 +21,15 @@
   --color-line-strong: #c4bdae;
   --color-ink: #161b24;
   --color-muted: #545e6e;
-  --color-subtle: #7b8494;
+  --color-subtle: #626b7a;
   --color-accent: #4250d6;
   --color-accent-strong: #3340c4;
   --color-on-accent: #ffffff;
-  --color-secret: #0f8a57;
-  --color-warn: #a16207;
-  --color-danger: #dc2626;
+  --color-secret: #0d784b;
+  --color-warn: #975c07;
+  --color-danger: #cf2121;
   --color-bit0: #e6e2d8;
-  --color-bit1: #0f8a57;
+  --color-bit1: #0d784b;
 
   --animate-fade-up: fade-up 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-blink: blink 1.1s steps(1) infinite;
@@ -53,7 +53,7 @@
   --color-line-strong: #354357;
   --color-ink: #e8edf4;
   --color-muted: #9aa8bb;
-  --color-subtle: #66758a;
+  --color-subtle: #78879b;
   --color-accent: #8b9dff;
   --color-accent-strong: #a5b3ff;
   --color-on-accent: #0a0d13;

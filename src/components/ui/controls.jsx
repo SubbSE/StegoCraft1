@@ -105,12 +105,13 @@ export function TextInput({ className = '', ...props }) {
   return <input className={`${inputCls} ${className}`} {...props} />;
 }
 
-export function PasswordField({ id, value, onChange, placeholder = 'Optional password', autoComplete = 'new-password' }) {
+export function PasswordField({ id, value, onChange, placeholder = 'Optional password', autoComplete = 'new-password', label = 'Password' }) {
   const [show, setShow] = useState(false);
   return (
     <div className="relative">
       <input
         id={id}
+        aria-label={id ? undefined : label}
         type={show ? 'text' : 'password'}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -140,6 +141,8 @@ export function Toggle({ checked, onChange, label, description }) {
         type="button"
         role="switch"
         aria-checked={checked}
+        aria-labelledby={`${id}-label`}
+        aria-describedby={description ? `${id}-description` : undefined}
         onClick={() => onChange(!checked)}
         className={`relative mt-0.5 inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
           checked ? 'bg-accent' : 'bg-surface-3'
@@ -152,8 +155,14 @@ export function Toggle({ checked, onChange, label, description }) {
         />
       </button>
       <label htmlFor={id} className="text-sm">
-        <span className="font-medium text-ink">{label}</span>
-        {description && <span className="block text-muted">{description}</span>}
+        <span id={`${id}-label`} className="font-medium text-ink">
+          {label}
+        </span>
+        {description && (
+          <span id={`${id}-description`} className="block text-muted">
+            {description}
+          </span>
+        )}
       </label>
     </div>
   );
