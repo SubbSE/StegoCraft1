@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { SITE_URL } from '../config/site';
 
 const SITE = 'StegoCraft';
 const DEFAULT_DESCRIPTION =
@@ -14,5 +15,14 @@ export function usePageMeta(title, description = DEFAULT_DESCRIPTION) {
       document.head.appendChild(meta);
     }
     meta.content = description;
+
+    // Each page is its own canonical URL (the static HTML is shared by every route).
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = SITE_URL + window.location.pathname;
   }, [title, description]);
 }

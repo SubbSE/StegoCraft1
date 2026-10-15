@@ -1,235 +1,131 @@
-# 🕵️ StegoCraft - Advanced Steganography Platform
+# StegoCraft
 
-<div align="center">
+**Learn steganography by doing.** StegoCraft is a free, open-source website for learning how to hide messages in
+pictures, sound and text — and how hidden messages get caught. Everything runs in the browser: no accounts, no
+tracking, no uploads.
 
-![StegoCraft Banner](https://img.shields.io/badge/StegoCraft-Steganography%20Platform-blueviolet?style=for-the-badge&logo=react)
+[**Open StegoCraft →**](https://stegocraft.netlify.app/) · [Report a bug](https://github.com/SubbSE/StegoCraft1/issues)
 
-[![React](https://img.shields.io/badge/React-18.2+-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.0+-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1+-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES2024-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Node.js](https://img.shields.io/badge/Node.js-20.0+-339933?style=flat&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+![StegoCraft: Hide a secret in plain sight](public/og-image.png)
 
-*Hide messages in plain sight with cutting-edge steganography techniques*
+## What's inside
 
-[🚀 Live Demo](https://stegocraft.netlify.app/) • [📖 Documentation](https://github.com/SubbSE/StegoCraft1/wiki) • [🐛 Report Bug](https://github.com/SubbSE/StegoCraft1/issues) • [💡 Request Feature](https://github.com/SubbSE/StegoCraft1/issues)
+| Section        | What you can do                                                                                                                                                                                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Learn**      | A course of 14 short lessons in five tracks — foundations, images, sound, text and detection — with 24 interactive experiments and a quiz in every lesson. Progress is saved in your browser.                                                                          |
+| **Lab**        | Hide text or whole files in PNG images (1–4 bits per colour value), WAV audio (1–4 bits per sample) and text (invisible Unicode characters or trailing whitespace). Optional password: AES-256-GCM encryption plus password-scattered bit positions. Then reveal them. |
+| **Detect**     | Steganalysis for any file: bit-plane viewer, the chi-square attack with a curve that shows how far sequential data reaches, histograms, spectrograms, a digital-silence check, and scans for invisible characters, look-alike letters and hidden whitespace.            |
+| **Challenges** | Ten capture-the-flag puzzles, from Easy to Hard, each with hints, a walkthrough and an explanation of how it worked.                                                                                                                                                   |
+| **History**    | An interactive timeline, from messages tattooed on a scalp around 499 BCE to malware hidden in the pixels of online adverts.                                                                                                                                           |
 
-</div>
+Messages are stored as UTF-8, so any language and script — Bengali, Arabic, Chinese, emoji — hides and comes back intact.
+The site has light and dark themes, works on phones, and can be used with a keyboard.
 
----
+## Getting started
 
-## 🎯 What is StegoCraft?
-
-StegoCraft is a modern web-based steganography platform that makes hiding and revealing secret messages as simple as a few clicks. Built as a capstone project, it combines cutting-edge algorithms with an intuitive user interface to make advanced cryptographic techniques accessible to everyone.
-
-### ✨ Key Features
-
-- 🖼️ **Image Steganography** - Hide messages in images using LSB substitution with pixel-perfect precision
-- 📝 **Text Steganography** - Invisible whitespace encoding that's completely undetectable to readers  
-- 🎵 **Audio Steganography** - Embed secrets in sound waves without affecting audio quality
-- 🔒 **100% Client-Side** - Your data never leaves your device
-- 🎨 **Beautiful UI/UX** - Modern glass-morphism design with smooth animations
-- 📱 **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js (v20.0 or higher)
-- npm (v10.0+) or yarn (v4.0+)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/SubbSE/StegoCraft1.git
-   cd stegocraft
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   ```
-   http://localhost:5173
-   ```
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-| Frontend | Styling | Build Tool | Runtime | Deployment |
-|----------|---------|------------|---------|------------|
-| ![React](https://img.shields.io/badge/React%2018.2-61DAFB?style=flat&logo=react&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind%204.1-06B6D4?style=flat&logo=tailwindcss&logoColor=white) | ![Vite](https://img.shields.io/badge/Vite%205.0-646CFF?style=flat&logo=vite&logoColor=white) | ![Node.js](https://img.shields.io/badge/Node.js%2020-339933?style=flat&logo=nodedotjs&logoColor=white) | ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white) |
-
-</div>
-
-### Additional Technologies
-- **React Router** v6.8+ - Client-side routing
-- **Framer Motion** v10.0+ - Smooth animations
-- **React Icons** v4.8+ - Beautiful iconography
-- **Canvas API** - Image manipulation
-- **Web Audio API** - Audio processing
-- **File API** - File handling
-
-## 🎮 How to Use
-
-### 1. **Image Steganography**
-```
-1. Upload an image (PNG, JPG, JPEG)
-2. Enter your secret message
-3. Click "Hide Message" to encode
-4. Download the steganographic image
-5. To decode: Upload encoded image and click "Extract Message"
-```
-
-### 2. **Text Steganography**
-```
-1. Enter your cover text
-2. Type your secret message
-3. Click "Encode" to hide message using whitespace
-4. Copy the encoded text
-5. To decode: Paste encoded text and click "Decode"
-```
-
-### 3. **Audio Steganography**
-```
-1. Upload an audio file (WAV, MP3)
-2. Enter your secret message
-3. Click "Hide in Audio" to encode
-4. Download the steganographic audio
-5. To decode: Upload encoded audio and extract message
-```
-
-## 🔬 How It Works
-
-### LSB (Least Significant Bit) Technique
-- Modifies the least significant bits of pixel values in images
-- Imperceptible to human eye but carries binary message data
-- Supports RGB and RGBA image formats
-
-### Whitespace Steganography
-- Uses invisible Unicode characters between words
-- Single space = binary 0, double space = binary 1
-- Completely undetectable in normal text viewing
-
-### Audio Steganography
-- Embeds data in inaudible frequency ranges
-- Uses phase coding and LSB modification
-- Maintains original audio quality
-
-## 👥 Team
-
-<div align="center">
-
-| **Sayan Basak**<br/>*Lead Developer*<br/>👨‍💻 | **Subir Ghosh**<br/>*Cryptography Specialist*<br/>👨‍🔬 | **Sriparna Biswas**<br/>*UI/UX Designer*<br/>👩‍💻 | **Ankan Jash**<br/>*Backend Architect*<br/>👨‍💻 |
-|:---:|:---:|:---:|:---:|
-| Tech wizard who brought the beautiful website to life | Algorithm mastermind behind our steganography techniques | Transforming ideas into beautiful clean and intuitive interfaces | System designer ensuring robust and scalable performance |
-| React • Tailwind • Image Processing | Cryptography • Python • Research | UX Design • Prototyping • Figma | Node.js • Architecture • Security |
-
-</div>
-
-## 📁 Project Structure
-
-```
-stegocraft/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── Footer.jsx
-│   │   └── ui/
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── About.jsx
-│   │   ├── ImageDemo.jsx
-│   │   ├── TextDemo.jsx
-│   │   └── AudioDemo.jsx
-│   ├── utils/
-│   │   ├── imageStego.js
-│   │   ├── textStego.js
-│   │   └── audioStego.js
-│   ├── styles/
-│   ├── App.jsx
-│   └── main.jsx
-├── package.json
-├── vite.config.js
-├── tailwind.config.js
-└── README.md
-```
-
-## 🤝 Contributing
-
-We love contributions! Please see our Contributing Guidelines for details.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 Available Scripts
+You need [Node.js](https://nodejs.org/) 20 or newer.
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint errors
+git clone https://github.com/SubbSE/StegoCraft1.git
+cd StegoCraft1
+npm install
+npm run dev
 ```
 
-## 🔐 Security & Privacy
+Then open the address Vite prints (usually http://localhost:5173).
 
-- **100% Client-Side Processing**: All steganography operations happen in your browser
-- **No Data Collection**: We don't store or transmit your files or messages
-- **Open Source**: Full transparency - inspect our code anytime
-- **Secure Algorithms**: Industry-standard steganography techniques
+| Command           | What it does                                        |
+| ----------------- | --------------------------------------------------- |
+| `npm run dev`     | Start the development server                        |
+| `npm test`        | Run the unit tests (Vitest)                         |
+| `npm run lint`    | Check the code with ESLint                          |
+| `npm run build`   | Build the site into `dist/`, including `sitemap.xml` |
+| `npm run preview` | Serve the production build locally                  |
 
-## 📚 Research & References
+## How it works
 
-Our implementation is based on established academic research:
+All processing happens in the browser with standard web APIs: Canvas for pixels, the Web Crypto API for encryption,
+and the Web Audio API to decode compressed audio. WAV files are read by StegoCraft's own parser, so every 16-bit sample
+is exact.
 
-- **Image Steganography**: LSB substitution techniques from IEEE papers
-- **Text Steganography**: Whitespace encoding methods
-- **Audio Steganography**: Phase coding and frequency domain techniques
+Every technique hides the same framed bytes:
 
-### Academic Papers Referenced
+```
+"S" "C" | version | flags | body length (u32) | CRC-32 of body (u32) | body…
+```
 
-- Johnson, N.F. & Jajodia, S. (2021). "A Survey of Digital Image Steganography." IEEE Transactions on Information Security
-- Zhang, L., Wang, H. & Chen, M. (2022). "Advanced LSB Techniques in Audio Steganography." Journal of Digital Signal Processing
-- Anderson, P. & Smith, R. (2020). "Whitespace Steganography in Text Documents." ACM Computing Surveys
+- **Flags:** bit 0 = encrypted, bit 1 = the body is a file (name and MIME type, then the bytes) rather than UTF-8 text.
+- **Passwords:** the body is encrypted with AES-256-GCM using a key derived with PBKDF2-SHA256 (250,000 iterations,
+  random 16-byte salt, 12-byte IV). The password also seeds a keyed permutation that scatters the bits across the
+  carrier, so without it there's no way to know where to look.
+- **Images:** bits go into the lowest bits of the red, green and blue values in reading order (or scattered). Pixels
+  that aren't fully opaque are skipped, because browsers store them premultiplied, which would destroy the hidden bits.
+- **Reading:** the extractor tries 1–4 bits per value automatically and uses the signature and checksum to tell a real
+  message from noise or damage.
 
-### Books Referenced
+## Project structure
 
-- Katzenbeisser, S. & Petitcolas, F.A.P. (2019). "Information Hiding: Steganography and Digital Watermarking." Artech House
-- Cox, I.J., Miller, M.L. & Bloom, J.A. (2021). "Digital Watermarking and Steganography." Morgan Kaufmann
+```
+src/
+├── lib/            Core steganography, crypto, DSP and analysis code (no React; unit-tested)
+├── content/
+│   ├── lessons/    One module per lesson: the lesson body plus its quiz
+│   └── challenges/ One module per challenge: builds its file, story, hints, walkthrough and debrief
+├── explorables/    The interactive experiments used inside lessons
+├── components/     UI, layout, media viewers, and the Lab, Detect and Challenge tools
+├── pages/          One component per route
+└── hooks/          Theme, progress, page metadata and other shared hooks
+scripts/            Maintenance scripts
+```
 
-## 📄 License
+### Adding a lesson
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Create `src/content/lessons/<slug>.jsx` that default-exports the lesson body and exports a `quiz` array, then add an
+entry to `LESSONS` in `src/content/lessons/index.js`. The sitemap picks it up automatically.
 
-## 🙏 Acknowledgments
+### Adding a challenge
 
-- Thanks to our professors for guidance on this capstone project
-- Inspired by classical steganography research papers
-- Built with modern web technologies for optimal performance
-- Special thanks to the open-source community
+Create `src/content/challenges/<id>.jsx` (see the existing ones: it exports `make()`, a default `Story`, `hints`,
+`Walkthrough` and `Debrief`) and add it to `CHALLENGES` in `src/content/challenges/index.js`. Answers are stored only as
+hashes, and secret texts are base64-encoded so that browsing the source doesn't spoil a puzzle by accident:
 
----
+```bash
+npx vite-node --root . scripts/challenge-answer.mjs <challenge-id> "<answer>" "<optional secret text>"
+```
 
-<div align="center">
+## Deploying
 
-**[⬆ Back to Top](#-stegocraft---advanced-steganography-platform)**
+The repository includes a `netlify.toml` with the build command, the single-page-app redirect and security headers.
+Any static host works: build with `npm run build`, serve `dist/`, and send unknown paths to `index.html`.
 
-Made with ❤️ by the StegoCraft Team
+## Team
 
-![Visitor Count](https://visitor-badge.laobi.icu/badge?page_id=sayanbasak.stegocraft)
+StegoCraft began as our final-year capstone project.
 
-</div>
+| Name            | Role                    |
+| --------------- | ----------------------- |
+| Sayan Basak     | Lead Developer          |
+| Subir Ghosh     | Cryptography Specialist |
+| Sriparna Biswas | UI/UX Designer          |
+| Ankan Jash      | Backend Architect       |
+
+## Further reading
+
+The full reading list is on the [About page](https://stegocraft.netlify.app/about#references). A few good starting
+points:
+
+- David Kahn, _The Codebreakers: The Story of Secret Writing_ (1967; revised 1996).
+- F. A. P. Petitcolas, R. J. Anderson and M. G. Kuhn, “Information Hiding — A Survey”, _Proceedings of the IEEE_ 87(7), 1999.
+- A. Westfeld and A. Pfitzmann, “Attacks on Steganographic Systems”, _Information Hiding 1999_, Springer LNCS 1768.
+- J. Fridrich, _Steganography in Digital Media: Principles, Algorithms, and Applications_, Cambridge University Press, 2009.
+
+## Acknowledgements
+
+Fonts: [Inter](https://rsms.me/inter/), [Space Grotesk](https://floriankarsten.com/space-grotesk) and
+[JetBrains Mono](https://www.jetbrains.com/lp/mono/) (SIL Open Font License), self-hosted via
+[Fontsource](https://fontsource.org/). Icons: [Lucide](https://lucide.dev/) (ISC License).
+
+## Use it responsibly
+
+Steganography protects privacy, and it is also used to hide malware and stolen data. Learn it to understand, protect
+and defend, and only analyse files you have the right to examine.

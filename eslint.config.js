@@ -31,6 +31,11 @@ export default [
     },
   },
   {
+    files: ['scripts/**/*.mjs', 'vite.config.js'],
+    languageOptions: { globals: globals.node, ecmaVersion: 'latest', sourceType: 'module' },
+    rules: js.configs.recommended.rules,
+  },
+  {
     // Lesson and challenge modules export data (quizzes, metadata) next to their components.
     files: ['src/content/**/*.{js,jsx}'],
     rules: { 'react-refresh/only-export-components': 'off' },
