@@ -55,6 +55,36 @@ export function psnr(a, b) {
   return se === 0 ? Infinity : 10 * Math.log10((255 * 255) / (se / n));
 }
 
+/**
+ * Map of changed pixels on a dark background. Each change is drawn as a dot of `radius` pixels
+ * so it stays visible when a large image is shown small.
+ */
+export function changeMap(a, b, radius = 1, color = [74, 222, 155]) {
+  const { width, height } = a;
+  const out = new Uint8ClampedArray(width * height * 4);
+  for (let i = 0; i < out.length; i += 4) {
+    out[i] = 14;
+    out[i + 1] = 18;
+    out[i + 2] = 28;
+    out[i + 3] = 255;
+  }
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+      if (a.data[i] === b.data[i] && a.data[i + 1] === b.data[i + 1] && a.data[i + 2] === b.data[i + 2]) continue;
+      for (let yy = Math.max(0, y - radius); yy <= Math.min(height - 1, y + radius); yy++) {
+        for (let xx = Math.max(0, x - radius); xx <= Math.min(width - 1, x + radius); xx++) {
+          const j = (yy * width + xx) * 4;
+          out[j] = color[0];
+          out[j + 1] = color[1];
+          out[j + 2] = color[2];
+        }
+      }
+    }
+  }
+  return { width, height, data: out };
+}
+
 /** Image highlighting changed pixels: unchanged → dark, changed → bright (amplified difference). */
 export function diffImage(a, b, gain = 64) {
   const out = new Uint8ClampedArray(a.data.length);
