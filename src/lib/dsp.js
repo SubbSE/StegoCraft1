@@ -110,3 +110,34 @@ export function quantTable(quality) {
   const scale = q < 50 ? 5000 / q : 200 - 2 * q;
   return JPEG_LUMA_TABLE.map((t) => Math.max(1, Math.min(255, Math.floor((t * scale + 50) / 100))));
 }
+
+/* ---------------- Echo hiding ---------------- */
+
+/** y[n] = x[n] + gain · x[n − delay]: the sound plus one faint, very short echo. */
+export function addEcho(signal, delay, gain = 0.5) {
+  const out = new Float32Array(signal.length);
+  for (let i = 0; i < signal.length; i++) out[i] = signal[i] + (i >= delay ? gain * signal[i - delay] : 0);
+  return out;
+}
+
+/** Real cepstrum, IFFT(log |FFT(x)|), of a segment whose length is a power of two. */
+export function realCepstrum(segment) {
+  const n = segment.length;
+  const re = new Float64Array(n);
+  const im = new Float64Array(n);
+  for (let i = 0; i < n; i++) re[i] = segment[i] * (0.54 - 0.46 * Math.cos((2 * Math.PI * i) / (n - 1)));
+  fft(re, im);
+  for (let i = 0; i < n; i++) {
+    re[i] = Math.log(Math.hypot(re[i], im[i]) + 1e-12);
+    im[i] = 0;
+  }
+  fft(re, im); // log-magnitude is real and even, so a forward FFT equals n × the inverse
+  for (let i = 0; i < n; i++) re[i] /= n;
+  return re;
+}
+
+/** Echo-hiding decoder: which of two delays left the stronger echo in this segment? */
+export function detectEchoBit(segment, delay0, delay1) {
+  const c = realCepstrum(segment);
+  return { c0: c[delay0], c1: c[delay1], bit: c[delay1] > c[delay0] ? 1 : 0 };
+}
