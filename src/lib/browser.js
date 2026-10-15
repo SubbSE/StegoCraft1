@@ -117,6 +117,15 @@ export async function loadAudioFile(file) {
 
 export const audioToBlob = (audio) => new Blob([encodeWav(audio)], { type: 'audio/wav' });
 
+/** Waits for a web font so canvas text can use it; if it fails, the fallback font is used. */
+export async function ensureFont(font) {
+  try {
+    await document.fonts?.load(font);
+  } catch {
+    // The fallback font is fine.
+  }
+}
+
 /** Render text into a 0–1 bitmap mask (used to draw messages into bit planes and spectrograms). */
 export function renderTextMask(lines, { width, height, font = '700 48px "Space Grotesk Variable", sans-serif', lineHeight = 1.15 }) {
   const canvas = document.createElement('canvas');

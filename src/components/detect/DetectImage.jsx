@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Callout, Card, Stat } from '../ui/display';
@@ -13,6 +14,7 @@ import { buildPayload } from '../../lib/payload';
 import { generateLandscape } from '../../lib/synth';
 import { imageToBlob, loadImageFile } from '../../lib/browser';
 import { friendlyError } from '../../lib/errors';
+import { receive } from '../../lib/handoff';
 
 const SAMPLES = [
   {
@@ -99,7 +101,11 @@ function Analysis({ image }) {
 }
 
 export default function DetectImage() {
-  const [subject, setSubject] = useState(null);
+  const location = useLocation();
+  const [subject, setSubject] = useState(() => {
+    const handed = receive(location.state, 'image');
+    return handed ? { image: handed.image, name: handed.name, note: '', id: 0 } : null;
+  });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const loads = useRef(0);

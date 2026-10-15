@@ -12,8 +12,8 @@ import { Dropzone } from '../ui/Dropzone';
 import ImageCanvas from '../media/ImageCanvas';
 import RevealResult from './RevealResult';
 
-export default function ImageReveal({ initial }) {
-  const [stego, setStego] = useState(initial ? { image: initial, name: 'stego.png', type: 'image/png' } : null);
+export default function ImageReveal({ initial, initialName = 'stego.png' }) {
+  const [stego, setStego] = useState(initial ? { image: initial, name: initialName, type: 'image/png' } : null);
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(null);

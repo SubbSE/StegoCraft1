@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Music, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Callout, Card, Stat } from '../ui/display';
@@ -13,6 +14,7 @@ import { buildPayload } from '../../lib/payload';
 import { generateMelody, synthesizeFromMask } from '../../lib/synth';
 import { loadAudioFile, renderTextMask } from '../../lib/browser';
 import { friendlyError } from '../../lib/errors';
+import { receive } from '../../lib/handoff';
 
 const RATE = 22050;
 
@@ -161,7 +163,11 @@ function Analysis({ audio }) {
 }
 
 export default function DetectAudio() {
-  const [subject, setSubject] = useState(null);
+  const location = useLocation();
+  const [subject, setSubject] = useState(() => {
+    const handed = receive(location.state, 'audio');
+    return handed ? { audio: handed.audio, name: handed.name, note: '', id: 0 } : null;
+  });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const loads = useRef(0);

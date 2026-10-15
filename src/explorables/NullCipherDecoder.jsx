@@ -14,7 +14,7 @@ export default function NullCipherDecoder() {
   return (
     <Figure
       title="Crack a wartime null cipher"
-      caption="This message is often attributed to a German spy in the Second World War (as told in David Kahn’s The Codebreakers). Try taking a different letter from each word."
+      caption="Textbooks often say a German spy sent this during the Second World War — but General Pershing sailed from New York for France in 1917, so the First World War fits better. Try taking a different letter from each word."
     >
       <blockquote className="rounded-xl border-l-4 border-accent bg-surface-2/60 p-4 font-serif text-[1.05rem] leading-relaxed text-ink">
         {MESSAGE.split(' ').map((word, wi) => {

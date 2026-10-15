@@ -38,7 +38,7 @@ export default function Learn() {
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </ButtonLink>
           {lessonCount > 0 && (
-            <button type="button" onClick={() => window.confirm('Reset your course progress?') && reset()} className="w-full text-center text-xs text-subtle hover:text-danger">
+            <button type="button" onClick={() => window.confirm('Reset all your progress, including solved challenges?') && reset()} className="w-full text-center text-xs text-subtle hover:text-danger">
               Reset progress
             </button>
           )}

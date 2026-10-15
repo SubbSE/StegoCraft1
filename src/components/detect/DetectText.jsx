@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Badge, Card } from '../ui/display';
 import { PasswordField, TextArea } from '../ui/controls';
 import { Button } from '../ui/Button';
@@ -7,6 +8,7 @@ import RevealResult from '../lab/RevealResult';
 import { buildPayload } from '../../lib/payload';
 import { bitsToBytes } from '../../lib/bytes';
 import { friendlyError, StegoError } from '../../lib/errors';
+import { receive } from '../../lib/handoff';
 import {
   codePoint,
   hideHomoglyphs,
@@ -41,7 +43,8 @@ function summariseInvisible(list) {
 }
 
 export default function DetectText() {
-  const [text, setText] = useState('');
+  const location = useLocation();
+  const [text, setText] = useState(() => receive(location.state, 'text')?.text ?? '');
   const [password, setPassword] = useState('');
   const [found, setFound] = useState(null);
   const scan = useMemo(() => scanText(text), [text]);

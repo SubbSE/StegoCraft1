@@ -12,8 +12,8 @@ import Waveform from '../media/Waveform';
 import RevealResult from './RevealResult';
 import { AUDIO_ACCEPT, describeAudio } from './shared';
 
-export default function AudioReveal({ initial }) {
-  const [stego, setStego] = useState(initial ? { audio: initial, name: 'stego.wav' } : null);
+export default function AudioReveal({ initial, initialName = 'stego.wav' }) {
+  const [stego, setStego] = useState(initial ? { audio: initial, name: initialName } : null);
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
