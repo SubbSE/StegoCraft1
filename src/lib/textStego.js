@@ -8,8 +8,8 @@ import { HEADER_BYTES, openFramed } from './payload';
 /* Zero-width characters: each invisible character carries 2 bits.     */
 /* ------------------------------------------------------------------ */
 
-export const ZERO_WIDTH = ['​', '‌', '‍', '⁠']; // 00, 01, 10, 11
-const ZW_STRIP = /[​-‍⁠﻿]/g;
+export const ZERO_WIDTH = ['\u200B', '\u200C', '\u200D', '\u2060']; // 00, 01, 10, 11
+const ZW_STRIP = /[\u200B-\u200D\u2060\uFEFF]/g;
 
 export function bytesToZeroWidth(bytes) {
   let s = '';
@@ -98,10 +98,10 @@ export async function revealTrailingWhitespace(text, password) {
 /* ------------------------------------------------------------------ */
 
 export const HOMOGLYPHS = {
-  a: 'а', c: 'с', e: 'е', o: 'о', p: 'р', x: 'х', y: 'у',
-  i: 'і', s: 'ѕ', j: 'ј',
-  A: 'А', B: 'В', C: 'С', E: 'Е', H: 'Н', K: 'К', M: 'М',
-  O: 'О', P: 'Р', T: 'Т', X: 'Х',
+  a: '\u0430', c: '\u0441', e: '\u0435', o: '\u043E', p: '\u0440', x: '\u0445', y: '\u0443',
+  i: '\u0456', s: '\u0455', j: '\u0458',
+  A: '\u0410', B: '\u0412', C: '\u0421', E: '\u0415', H: '\u041D', K: '\u041A', M: '\u041C',
+  O: '\u041E', P: '\u0420', T: '\u0422', X: '\u0425',
 };
 const LOOKALIKE_OF = Object.fromEntries(Object.entries(HOMOGLYPHS).map(([latin, cyr]) => [cyr, latin]));
 
@@ -171,28 +171,28 @@ export function baconDecode(ab) {
 /* ------------------------------------------------------------------ */
 
 export const INVISIBLE_NAMES = {
-  '­': 'SOFT HYPHEN',
-  '᠎': 'MONGOLIAN VOWEL SEPARATOR',
-  '​': 'ZERO WIDTH SPACE',
-  '‌': 'ZERO WIDTH NON-JOINER',
-  '‍': 'ZERO WIDTH JOINER',
-  '‎': 'LEFT-TO-RIGHT MARK',
-  '‏': 'RIGHT-TO-LEFT MARK',
-  '‪': 'LEFT-TO-RIGHT EMBEDDING',
-  '‫': 'RIGHT-TO-LEFT EMBEDDING',
-  '‬': 'POP DIRECTIONAL FORMATTING',
-  '‭': 'LEFT-TO-RIGHT OVERRIDE',
-  '‮': 'RIGHT-TO-LEFT OVERRIDE',
-  '⁠': 'WORD JOINER',
-  '⁡': 'FUNCTION APPLICATION',
-  '⁢': 'INVISIBLE TIMES',
-  '⁣': 'INVISIBLE SEPARATOR',
-  '⁤': 'INVISIBLE PLUS',
-  '⁦': 'LEFT-TO-RIGHT ISOLATE',
-  '⁧': 'RIGHT-TO-LEFT ISOLATE',
-  '⁨': 'FIRST STRONG ISOLATE',
-  '⁩': 'POP DIRECTIONAL ISOLATE',
-  '﻿': 'ZERO WIDTH NO-BREAK SPACE',
+  '\u00AD': 'SOFT HYPHEN',
+  '\u180E': 'MONGOLIAN VOWEL SEPARATOR',
+  '\u200B': 'ZERO WIDTH SPACE',
+  '\u200C': 'ZERO WIDTH NON-JOINER',
+  '\u200D': 'ZERO WIDTH JOINER',
+  '\u200E': 'LEFT-TO-RIGHT MARK',
+  '\u200F': 'RIGHT-TO-LEFT MARK',
+  '\u202A': 'LEFT-TO-RIGHT EMBEDDING',
+  '\u202B': 'RIGHT-TO-LEFT EMBEDDING',
+  '\u202C': 'POP DIRECTIONAL FORMATTING',
+  '\u202D': 'LEFT-TO-RIGHT OVERRIDE',
+  '\u202E': 'RIGHT-TO-LEFT OVERRIDE',
+  '\u2060': 'WORD JOINER',
+  '\u2061': 'FUNCTION APPLICATION',
+  '\u2062': 'INVISIBLE TIMES',
+  '\u2063': 'INVISIBLE SEPARATOR',
+  '\u2064': 'INVISIBLE PLUS',
+  '\u2066': 'LEFT-TO-RIGHT ISOLATE',
+  '\u2067': 'RIGHT-TO-LEFT ISOLATE',
+  '\u2068': 'FIRST STRONG ISOLATE',
+  '\u2069': 'POP DIRECTIONAL ISOLATE',
+  '\uFEFF': 'ZERO WIDTH NO-BREAK SPACE',
 };
 
 export const codePoint = (ch) => `U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')}`;

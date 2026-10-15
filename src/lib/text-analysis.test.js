@@ -26,7 +26,7 @@ describe('zero-width text', () => {
   it('round-trips multilingual payloads without changing the visible text', async () => {
     const payload = await buildPayload({ text: 'গোপন বার্তা 🤫 秘密' });
     const stego = hideZeroWidth(COVER, payload);
-    expect(stego.replace(/[​-‍⁠]/g, '')).toBe(COVER);
+    expect(stego.replace(/[\u200B-\u200D\u2060]/g, '')).toBe(COVER);
     expect(await revealZeroWidth(stego)).toEqual({ kind: 'text', text: 'গোপন বার্তা 🤫 秘密' });
   });
 
@@ -74,7 +74,7 @@ describe('other text techniques', () => {
   });
 
   it('scans for invisible characters', () => {
-    const report = scanText('a​b﻿c  d \ne');
+    const report = scanText('a\u200Bb\uFEFFc  d \ne');
     expect(report.invisible.map((i) => i.name)).toEqual(['ZERO WIDTH SPACE', 'ZERO WIDTH NO-BREAK SPACE']);
     expect(report.trailingLines).toBe(1);
     expect(report.doubleSpaces).toBe(1);
