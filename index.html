@@ -2,11 +2,65 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>StegoCraft — Learn steganography by doing</title>
+    <meta
+      name="description"
+      content="A free, interactive course on steganography: hide messages in images, audio and text, then learn how they get caught. Everything runs in your browser."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f6f4ef" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d13" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="StegoCraft" />
+    <meta property="og:title" content="StegoCraft — Learn steganography by doing" />
+    <meta
+      property="og:description"
+      content="Interactive lessons, a hands-on lab, steganalysis tools and challenges. Hide anything in plain sight, right in your browser."
+    />
+    <meta property="og:image" content="https://stegocraft.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="StegoCraft: Hide a secret in plain sight. A landscape photo next to its lowest bit plane, which reads: You found the secret!"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "StegoCraft: Learn steganography by doing",
+        "description": "A free, interactive course on steganography: hiding messages in images, sound and text, and learning how they get detected.",
+        "url": "https://stegocraft.netlify.app/learn",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "educationalLevel": "Beginner",
+        "provider": { "@type": "Organization", "name": "StegoCraft", "url": "https://stegocraft.netlify.app/" }
+      }
+    </script>
+
+    <script>
+      // Apply the saved or system theme before first paint to avoid a flash.
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('sc-theme'); } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
+    <noscript>
+      <p style="font-family: system-ui, sans-serif; padding: 2rem; max-width: 40rem; margin: auto">
+        StegoCraft is an interactive learning site and needs JavaScript to run. Everything happens
+        locally in your browser — nothing you hide or reveal is uploaded anywhere.
+      </p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
